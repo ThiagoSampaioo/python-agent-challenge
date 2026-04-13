@@ -31,14 +31,6 @@ Variáveis de ambiente
 
 Crie um arquivo .env na raiz do projeto com base no .env.example.
 
-Exemplo:
-
-OPENAI_API_KEY=sua_chave_aqui
-KB_URL=https://url-oficial-do-desafio
-MODEL=gpt-4o-mini
-
-A KB_URL deve ser a URL oficial da base do desafio.
-
 Como rodar
 Opção 1: com Docker
 Clone o repositório:
