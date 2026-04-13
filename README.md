@@ -42,7 +42,7 @@ A KB_URL deve ser a URL oficial da base do desafio.
 Como rodar
 Opção 1: com Docker
 Clone o repositório:
-git clone <url-do-repositorio>
+git clone [<url-do-repositorio>](https://github.com/ThiagoSampaioo/python-agent-challenge.git)
 cd python-agent-challenge
 Crie o arquivo .env na raiz do projeto.
 Abra o Docker Desktop e aguarde iniciar completamente.
