@@ -1,0 +1,1 @@
+FALLBACK_ANSWER = "Não encontrei informação suficiente na base para responder essa pergunta."
