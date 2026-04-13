@@ -9,6 +9,7 @@ class LLMClient:
     def __init__(self) -> None:
         self.provider = settings.llm_provider.lower().strip()
 
+        # Por enquanto o cliente foi preparado apenas para OpenAI
         if self.provider != "openai":
             raise ValueError(
                 f"LLM_PROVIDER não suportado no momento: {settings.llm_provider}"
@@ -100,4 +101,5 @@ class LLMClient:
                 continue
             lines.append(f"{role}: {content}")
 
+        # Mantém o histórico em texto simples para compor o prompt
         return "\n".join(lines) if lines else "Sem histórico anterior."

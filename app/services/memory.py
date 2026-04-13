@@ -14,6 +14,7 @@ class SessionMemory:
         if not session_id:
             return []
 
+        # Remove sessões expiradas antes de consultar
         self._cleanup_expired()
 
         session = self._store.get(session_id)
@@ -37,6 +38,7 @@ class SessionMemory:
         now = time.time()
         session = self._store.get(session_id)
 
+        # Cria a sessão na primeira mensagem recebida
         if not session:
             session = {
                 "updated_at": now,
@@ -53,6 +55,7 @@ class SessionMemory:
             }
         )
 
+        # Mantém só a quantidade mais recente definida na configuração
         session["messages"] = session["messages"][-self.max_messages :]
 
     def get_last_assistant_message(self, session_id: str | None) -> dict[str, Any] | None:

@@ -28,6 +28,7 @@ class MessageOrchestrator:
 
         history = self.memory.get_history(session_id)
 
+        # Trata pedidos de resumo usando a última resposta salva em memória
         if self._is_summary_request(cleaned_message):
             return self._handle_summary_request(cleaned_message, session_id)
 
@@ -47,6 +48,7 @@ class MessageOrchestrator:
         if self._should_force_fallback(cleaned_message, ranked_sections):
             return self._fallback_response()
 
+        # Em algumas perguntas vale forçar a seção esperada para evitar desvio
         ranked_sections = self._apply_expected_section_rule(cleaned_message, ranked_sections)
 
         if not ranked_sections:
@@ -79,7 +81,7 @@ class MessageOrchestrator:
             answer=cleaned_answer,
             sources=[SourceItem(section=section) for section in selected_sections],
         )
-
+# Métodos auxiliares para tratamento de mensagens, construção de contexto e regras específicas
     def _handle_summary_request(
         self,
         message: str,
@@ -169,6 +171,7 @@ class MessageOrchestrator:
         current_message: str,
         history: list[dict[str, str]],
     ) -> str:
+        # Se for continuação de contexto, junta com a última pergunta do usuário
         if not self._is_follow_up_message(current_message):
             return current_message
 
@@ -202,6 +205,7 @@ class MessageOrchestrator:
             "continue",
         ]
 
+        # Mensagens muito curtas costumam depender do contexto anterior
         if len(lowered.split()) <= 5:
             return True
 

@@ -54,6 +54,7 @@ class RelevanceService:
         if not ranked_sections:
             return False
 
+        # Exige uma pontuação mínima para considerar que houve contexto útil
         return ranked_sections[0].score >= 2
 
     def _score_section(
@@ -68,6 +69,7 @@ class RelevanceService:
 
         score = 0
 
+        # Dá um peso maior quando o título da seção aparece diretamente na busca
         if normalized_title and normalized_title in normalized_query:
             score += 12
 
@@ -88,6 +90,7 @@ class RelevanceService:
         }
 
     def _normalize(self, text: str) -> str:
+        # Padroniza o texto para facilitar a comparação
         text = text.lower().strip()
         text = unicodedata.normalize("NFD", text)
         text = "".join(char for char in text if unicodedata.category(char) != "Mn")
