@@ -21,7 +21,7 @@ Quando não há contexto suficiente, retorna o fallback obrigatório:
   "answer": "Não encontrei informação suficiente na base para responder essa pergunta.",
   "sources": []
 }
-
+````
 Requisitos
 Python 3.12+
 Docker Desktop
